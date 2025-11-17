@@ -36,7 +36,7 @@ const EbookBenefits: React.FC = () => {
             </div>
           ))}
           <div className="sm:col-span-2 lg:col-span-1 flex items-center justify-center bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 p-6 rounded-lg border border-brand-gold/30 backdrop-blur-sm hover:border-brand-gold/60 transition-all duration-300 group">
-            <a href="#ebook-form" className="text-brand-gold text-lg text-center hover:text-brand-gold-light transition-colors flex flex-col items-center gap-2 group">
+            <a href="#contact" className="text-brand-gold text-lg text-center hover:text-brand-gold-light transition-colors flex flex-col items-center gap-2 group">
               <span className="group-hover:underline">Reçois ton e-book gratuitement en laissant ton e-mail.</span>
               <svg className="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
