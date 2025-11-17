@@ -32,7 +32,7 @@ const Footer: React.FC<FooterProps> = ({ onLegalClick }) => {
               <InstagramIcon className="w-7 h-7" />
             </a>
             <a 
-              href="https://facebook.com/theb0dyhealer" 
+              href="https://www.facebook.com/people/Theb0dyhealer/61577290457184/" 
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook theb0dyhealer" 
