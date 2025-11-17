@@ -7,9 +7,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, error: 'Missing email' }, { status: 400 });
     }
 
-    // Determine base URL (use NEXT_PUBLIC_BASE_URL or request origin)
-    const origin = process.env.NEXT_PUBLIC_BASE_URL || new URL(request.url).origin;
-    const ebookUrl = `${origin.replace(/\/$/, '')}/ebook.pdf`;
+    // Determine e-book URL:
+    // Priority: EBOOK_URL env var (allows CDN link), then NEXT_PUBLIC_BASE_URL + /ebook.pdf, then request origin
+    const ebookUrl = process.env.EBOOK_URL
+      || `${(process.env.NEXT_PUBLIC_BASE_URL || new URL(request.url).origin).replace(/\/$/, '')}/ebook.pdf`;
 
     const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) {
