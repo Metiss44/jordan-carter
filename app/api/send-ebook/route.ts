@@ -47,7 +47,7 @@ export async function POST(request: Request) {
     try {
       const makeWebhook = process.env.MAKE_WEBHOOK_URL || 'https://hook.eu2.make.com/o7gty91n7eg5a3gu2leqifpgmq8vb6ql';
       // fire-and-forget but await to know if it failed (we won't fail the main request because of this)
-      await fetch(makeWebhook, {
+      const makeResp = await fetch(makeWebhook, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -58,6 +58,16 @@ export async function POST(request: Request) {
           source: 'website'
         }),
       });
+
+      // Log result for easier debugging in Vercel logs
+      if (!makeResp.ok) {
+        const makeText = await makeResp.text().catch(() => '[unreadable body]');
+        // eslint-disable-next-line no-console
+        console.error('Make webhook returned non-OK status', makeResp.status, makeText);
+      } else {
+        // eslint-disable-next-line no-console
+        console.log('Make webhook delivered, status', makeResp.status);
+      }
     } catch (err) {
       // don't block the user flow if webhook fails; just log for debugging
       // In Vercel, these logs will appear in the function logs
