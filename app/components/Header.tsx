@@ -31,7 +31,7 @@ const Header: React.FC = () => {
           : 'bg-brand-blue/80 backdrop-blur-sm'
       }`}
     >
-      <div className="container mx-auto px-6 py-5 flex justify-between items-center max-w-7xl">
+      <div className="container mx-auto px-6 py-3 md:py-5 flex justify-between items-center max-w-7xl">
         <a href="#hero" className="flex items-center group">
           <div className="relative h-[60px] md:h-[72px] w-auto min-w-[175px] md:min-w-[210px]">
             <Image 

@@ -23,15 +23,19 @@ const Footer: React.FC<FooterProps> = ({ onLegalClick }) => {
           </div>
           <div className="flex justify-center items-center space-x-6">
             <a 
-              href="#" 
-              aria-label="Instagram" 
+              href="https://instagram.com/theb0dyhealer" 
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram @theb0dyhealer" 
               className="text-brand-beige hover:text-brand-gold transition-all duration-300 transform hover:scale-110"
             >
               <InstagramIcon className="w-7 h-7" />
             </a>
             <a 
-              href="#" 
-              aria-label="Facebook" 
+              href="https://facebook.com/theb0dyhealer" 
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook theb0dyhealer" 
               className="text-brand-beige hover:text-brand-gold transition-all duration-300 transform hover:scale-110"
             >
               <FacebookIcon className="w-7 h-7" />

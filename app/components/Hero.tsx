@@ -22,14 +22,11 @@ const Hero: React.FC = () => {
               THE BODY HEALER — JORDAN CARTER
             </span>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-white leading-tight">
-              Reconnecte-toi à ton corps, 
-              <span className="block mt-2 text-brand-gold">apaise ton esprit.</span>
+              Reconnecte-toi à <span className="md:inline block">ton corps,</span> 
+              <span className="block mt-2 text-brand-gold">Apaise ton esprit.</span>
             </h1>
             <p className="text-sm md:text-lg text-brand-green-gray leading-relaxed">
-              Je t&apos;aide à écouter les messages de ton corps pour apaiser ton esprit, libérer les tensions et retrouver un ancrage profond dans ta vie.
-            </p>
-            <p className="text-xs md:text-base text-brand-beige leading-relaxed">
-              Pour t&apos;accompagner sur ce chemin, je t&apos;offre un e-book dans lequel je partage ma vision des soins énergétiques, de la respiration consciente et des rituels simples à intégrer à ton quotidien.
+              Je t&apos;aide à écouter les messages de ton corps pour libérer les tensions, retrouver un ancrage profond et intégrer des rituels simples à ton quotidien grâce aux soins énergétiques et à la respiration consciente.
             </p>
             <div id="ebook-form" className="w-full max-w-lg pt-2">
               <OptInForm />
