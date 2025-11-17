@@ -31,15 +31,15 @@ const Header: React.FC = () => {
           : 'bg-brand-blue/80 backdrop-blur-sm'
       }`}
     >
-      <div className="container mx-auto px-6 py-3 md:py-5 flex justify-between items-center max-w-7xl">
+      <div className="container mx-auto px-4 md:px-6 py-2 md:py-5 flex justify-between items-center max-w-7xl">
         <a href="#hero" className="flex items-center group">
-          <div className="relative h-[60px] md:h-[72px] w-auto min-w-[175px] md:min-w-[210px]">
+          <div className="relative h-[72px] md:h-[72px] w-auto min-w-[160px] md:min-w-[210px]">
             <Image 
               src="https://cdn.the-body-healer.com/logo-thebodyhealer.webp" 
               alt="The Body Healer Logo" 
-              width={210}
-              height={72}
-              className="h-[60px] md:h-[72px] w-auto transition-transform duration-300 group-hover:scale-105"
+              width={240}
+              height={82}
+              className="h-[72px] md:h-[72px] w-auto -mt-3 md:mt-0 transition-transform duration-300 group-hover:scale-105"
               priority
             />
           </div>
