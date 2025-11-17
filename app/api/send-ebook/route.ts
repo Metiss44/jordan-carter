@@ -42,6 +42,29 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, error: 'Resend error', detail: text }, { status: 502 });
     }
 
+    // Notify Make/Webhook (optional) so you can store subscribers in a sheet or trigger automations.
+    // The webhook URL can be provided via env var MAKE_WEBHOOK_URL or falls back to the provided Make webhook.
+    try {
+      const makeWebhook = process.env.MAKE_WEBHOOK_URL || 'https://hook.eu2.make.com/o7gty91n7eg5a3gu2leqifpgmq8vb6ql';
+      // fire-and-forget but await to know if it failed (we won't fail the main request because of this)
+      await fetch(makeWebhook, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          firstName: firstName || null,
+          ebookUrl,
+          sentAt: new Date().toISOString(),
+          source: 'website'
+        }),
+      });
+    } catch (err) {
+      // don't block the user flow if webhook fails; just log for debugging
+      // In Vercel, these logs will appear in the function logs
+      // eslint-disable-next-line no-console
+      console.error('Make webhook failed:', err);
+    }
+
     return NextResponse.json({ ok: true });
   } catch (err: any) {
     return NextResponse.json({ ok: false, error: err?.message || 'Unknown error' }, { status: 500 });
