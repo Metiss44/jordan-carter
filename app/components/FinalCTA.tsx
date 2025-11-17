@@ -12,7 +12,7 @@ const FinalCTA: React.FC = () => {
       
       <div className="container mx-auto px-6 text-center flex flex-col items-center relative z-10">
         <div className="mb-8 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-white mb-4">
+          <h2 id="final-cta-title" className="text-3xl md:text-4xl lg:text-5xl font-serif text-white mb-4">
             Tu sens que ton corps te parle déjà ?
           </h2>
           <p className="max-w-xl mx-auto text-lg md:text-xl text-brand-green-gray leading-relaxed">
