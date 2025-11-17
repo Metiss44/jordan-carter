@@ -26,6 +26,10 @@ export const metadata: Metadata = {
     description: "Reconnecte-toi à ton corps, apaise ton esprit.",
     type: "website",
   },
+  icons: [
+    { rel: 'icon', url: 'https://cdn.the-body-healer.com/favicon-thebodyhealer.webp' },
+    { rel: 'apple-touch-icon', url: 'https://cdn.the-body-healer.com/favicon-thebodyhealer.webp' }
+  ],
 };
 
 export default function RootLayout({
