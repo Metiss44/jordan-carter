@@ -45,7 +45,7 @@ export async function POST(request: Request) {
     // Notify Make/Webhook (optional) so you can store subscribers in a sheet or trigger automations.
     // The webhook URL can be provided via env var MAKE_WEBHOOK_URL or falls back to the provided Make webhook.
     try {
-      const makeWebhook = process.env.MAKE_WEBHOOK_URL || 'https://hook.eu2.make.com/o7gty91n7eg5a3gu2leqifpgmq8vb6ql';
+  const makeWebhook = process.env.MAKE_WEBHOOK_URL || 'https://hook.eu2.make.com/1ooouqzlc2g92iv9ta0nv9d5g361cby8';
       // fire-and-forget but await to know if it failed (we won't fail the main request because of this)
       const makeResp = await fetch(makeWebhook, {
         method: 'POST',
