@@ -28,25 +28,13 @@ export async function POST(request: Request) {
              <p>Avec bienveillance,<br/>Jordan</p>`
     };
 
-    const resp = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
-      },
-      body: JSON.stringify(payload),
-    });
+    // Log incoming request for debugging
+    // eslint-disable-next-line no-console
+    console.log('send-ebook route called for', email);
 
-    if (!resp.ok) {
-      const text = await resp.text();
-      return NextResponse.json({ ok: false, error: 'Resend error', detail: text }, { status: 502 });
-    }
-
-    // Notify Make/Webhook (optional) so you can store subscribers in a sheet or trigger automations.
-    // The webhook URL can be provided via env var MAKE_WEBHOOK_URL or falls back to the provided Make webhook.
+    // First: Notify Make/Webhook so subscribers are captured even if Resend fails.
     try {
-  const makeWebhook = process.env.MAKE_WEBHOOK_URL || 'https://hook.eu2.make.com/1ooouqzlc2g92iv9ta0nv9d5g361cby8';
-      // fire-and-forget but await to know if it failed (we won't fail the main request because of this)
+      const makeWebhook = process.env.MAKE_WEBHOOK_URL || 'https://hook.eu2.make.com/1ooouqzlc2g92iv9ta0nv9d5g361cby8';
       const makeResp = await fetch(makeWebhook, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -59,7 +47,6 @@ export async function POST(request: Request) {
         }),
       });
 
-      // Log result for easier debugging in Vercel logs
       if (!makeResp.ok) {
         const makeText = await makeResp.text().catch(() => '[unreadable body]');
         // eslint-disable-next-line no-console
@@ -69,10 +56,25 @@ export async function POST(request: Request) {
         console.log('Make webhook delivered, status', makeResp.status);
       }
     } catch (err) {
-      // don't block the user flow if webhook fails; just log for debugging
-      // In Vercel, these logs will appear in the function logs
       // eslint-disable-next-line no-console
       console.error('Make webhook failed:', err);
+    }
+
+    // Then: send email via Resend
+    const resp = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!resp.ok) {
+      const text = await resp.text();
+      // eslint-disable-next-line no-console
+      console.error('Resend error:', resp.status, text);
+      return NextResponse.json({ ok: false, error: 'Resend error', detail: text }, { status: 502 });
     }
 
     return NextResponse.json({ ok: true });
