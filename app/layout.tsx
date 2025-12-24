@@ -18,13 +18,24 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://the-body-healer.com"),
   title: "THE BODY HEALER - Jordan Carter | Soins Énergétiques",
   description: "Reconnecte-toi à ton corps, apaise ton esprit. Je t'aide à écouter les messages de ton corps pour libérer les tensions et retrouver un ancrage profond.",
   keywords: ["soins énergétiques", "respiration consciente", "bien-être", "Jordan Carter", "The Body Healer"],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "THE BODY HEALER - Jordan Carter",
     description: "Reconnecte-toi à ton corps, apaise ton esprit.",
     type: "website",
+    url: "https://the-body-healer.com",
+    siteName: "The Body Healer",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "THE BODY HEALER - Jordan Carter",
+    description: "Reconnecte-toi à ton corps, apaise ton esprit.",
   },
   icons: [
     { rel: 'icon', url: 'https://cdn.the-body-healer.com/favicon-thebodyhealer.webp' },
