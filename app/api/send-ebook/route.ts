@@ -1,16 +1,25 @@
 import { NextResponse } from 'next/server';
 
+const escapeHtml = (value: string) => value.replace(/[&<>"']/g, (character) =>
+  ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]!);
+
 export async function POST(request: Request) {
   try {
-    const { email, firstName } = await request.json();
-    if (!email) {
+    const body = await request.json();
+    if (!body || typeof body !== 'object' || Array.isArray(body)) {
+      return NextResponse.json({ ok: false, error: 'Invalid request' }, { status: 400 });
+    }
+    const { email, firstName } = body;
+    if (typeof email !== 'string' || email.length > 254
+      || !/^[^\s@<>,;"']+@[^\s@<>,;"']+\.[^\s@<>,;"']+$/.test(email)
+      || (firstName !== undefined && (typeof firstName !== 'string' || firstName.length > 120))) {
       return NextResponse.json({ ok: false, error: 'Missing email' }, { status: 400 });
     }
 
     // Determine e-book URL:
     // Priority: EBOOK_URL env var (allows CDN link), then NEXT_PUBLIC_BASE_URL + /ebook.pdf, then request origin
     const ebookUrl = process.env.EBOOK_URL
-      || `${(process.env.NEXT_PUBLIC_BASE_URL || new URL(request.url).origin).replace(/\/$/, '')}/ebook.pdf`;
+      || `${(process.env.NEXT_PUBLIC_BASE_URL || 'https://the-body-healer.com').replace(/\/$/, '')}/ebook.pdf`;
 
     const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) {
@@ -21,16 +30,12 @@ export async function POST(request: Request) {
       from: 'Jordan <jordan@the-body-healer.com>',
       to: email,
       subject: 'Ton e-book — The Body Healer',
-      html: `<p>Bonjour ${firstName || ''},</p>
+      html: `<p>Bonjour ${escapeHtml(firstName || '')},</p>
              <p>Merci pour ton inscription — tu peux télécharger ton e‑book ici :</p>
-             <p><a href="${ebookUrl}" target="_blank" rel="noopener noreferrer">Télécharger l'e‑book The Body Healer (PDF)</a></p>
+             <p><a href="${escapeHtml(ebookUrl)}" target="_blank" rel="noopener noreferrer">Télécharger l'e‑book The Body Healer (PDF)</a></p>
              <p>Si tu n'as pas demandé cet e‑mail, ignore ce message.</p>
              <p>Avec bienveillance,<br/>Jordan</p>`
     };
-
-    // Log incoming request for debugging
-    // eslint-disable-next-line no-console
-    console.log('send-ebook route called for', email);
 
     // First: Notify Make/Webhook so subscribers are captured even if Resend fails.
     try {
