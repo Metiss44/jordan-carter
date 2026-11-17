@@ -7,5 +7,9 @@
   "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
   "workers_dev": true,
   "preview_urls": false,
+  "routes": [
+    { "pattern": "the-body-healer.com/*", "zone_name": "the-body-healer.com" },
+    { "pattern": "www.the-body-healer.com/*", "zone_name": "the-body-healer.com" }
+  ],
   "observability": { "enabled": true }
 }
