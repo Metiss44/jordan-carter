@@ -6,16 +6,16 @@ import { CheckCircleIcon } from './Icons';
 
 const About: React.FC = () => {
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-[#14232e] to-brand-blue relative overflow-hidden">
+    <section id="about" className="py-20 bg-linear-to-b from-[#14232e] to-brand-blue relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-gold to-transparent"></div>
+      <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-brand-gold to-transparent"></div>
       
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
           <div className="lg:col-span-2 flex justify-center animate-fade-in">
             <div className="relative group">
               {/* Glow effect */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-brand-gold/20 to-transparent rounded-lg blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
+              <div className="absolute -inset-4 bg-linear-to-r from-brand-gold/20 to-transparent rounded-lg blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
               <Image 
                 src="https://cdn.the-body-healer.com/photo-carter-2.webp" 
                 alt="Jordan Carter" 
@@ -26,7 +26,7 @@ const About: React.FC = () => {
             </div>
           </div>
           <div className="lg:col-span-3 space-y-6 animate-slide-up">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-white leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-white leading-tight md:leading-10 lg:leading-none">
               Je m&apos;appelle Jordan, et j&apos;accompagne les corps qui ont besoin de 
               <span className="text-brand-gold"> se sentir entendus</span>.
             </h2>
@@ -41,23 +41,23 @@ const About: React.FC = () => {
                 Mon approche est douce, non intrusive, et toujours centrée sur ce que tu ressens ici et maintenant. Je ne te demande pas de croire à quoi que ce soit : je t&apos;invite à expérimenter par toi-même.
               </p>
             </div>
-            <div className="mt-8 bg-white/5 p-6 rounded-lg border border-brand-gold/20 backdrop-blur-sm">
+            <div className="mt-8 bg-white/5 p-6 rounded-lg border border-brand-gold/20 backdrop-blur-xs">
               <h3 className="text-xl md:text-2xl font-serif font-semibold text-brand-gold mb-4">En séance, je t&apos;aide à :</h3>
               <ul className="space-y-3">
                 <li className="flex items-start group">
-                  <CheckCircleIcon className="h-6 w-6 text-brand-gold mr-3 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  <CheckCircleIcon className="h-6 w-6 text-brand-gold mr-3 mt-1 shrink-0 group-hover:scale-110 transition-transform" />
                   <span className="group-hover:text-white transition-colors">relâcher les tensions émotionnelles et physiques accumulées,</span>
                 </li>
                 <li className="flex items-start group">
-                  <CheckCircleIcon className="h-6 w-6 text-brand-gold mr-3 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  <CheckCircleIcon className="h-6 w-6 text-brand-gold mr-3 mt-1 shrink-0 group-hover:scale-110 transition-transform" />
                   <span className="group-hover:text-white transition-colors">revenir dans ton corps grâce à la respiration et au mouvement,</span>
                 </li>
                 <li className="flex items-start group">
-                  <CheckCircleIcon className="h-6 w-6 text-brand-gold mr-3 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  <CheckCircleIcon className="h-6 w-6 text-brand-gold mr-3 mt-1 shrink-0 group-hover:scale-110 transition-transform" />
                   <span className="group-hover:text-white transition-colors">poser des mots sur ce que tu traverses, sans jugement,</span>
                 </li>
                 <li className="flex items-start group">
-                  <CheckCircleIcon className="h-6 w-6 text-brand-gold mr-3 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  <CheckCircleIcon className="h-6 w-6 text-brand-gold mr-3 mt-1 shrink-0 group-hover:scale-110 transition-transform" />
                   <span className="group-hover:text-white transition-colors">repartir avec des rituels simples à refaire chez toi.</span>
                 </li>
               </ul>

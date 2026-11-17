@@ -15,7 +15,7 @@ const EbookBenefits: React.FC = () => {
   return (
     <section id="ebook" className="py-20 bg-brand-blue relative overflow-hidden">
       {/* Decorative gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-brand-blue via-brand-blue-light to-brand-blue opacity-50"></div>
+      <div className="absolute inset-0 bg-linear-to-br from-brand-blue via-brand-blue-light to-brand-blue opacity-50"></div>
       
       <div className="container mx-auto px-6 text-center relative z-10">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-white mb-4 animate-fade-in">
@@ -28,14 +28,14 @@ const EbookBenefits: React.FC = () => {
           {benefits.map((benefit, index) => (
             <div 
               key={index} 
-              className="bg-gradient-to-br from-white/10 to-white/5 p-6 rounded-lg border border-white/10 backdrop-blur-sm transform hover:-translate-y-2 hover:border-brand-gold/50 transition-all duration-300 group animate-slide-up"
+              className="bg-linear-to-br from-white/10 to-white/5 p-6 rounded-lg border border-white/10 backdrop-blur-xs transform hover:-translate-y-2 hover:border-brand-gold/50 transition-all duration-300 group animate-slide-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="text-brand-gold w-10 h-10 mb-4 group-hover:scale-110 transition-transform">{benefit.icon}</div>
               <p className="text-brand-beige group-hover:text-white transition-colors">{benefit.text}</p>
             </div>
           ))}
-          <div className="sm:col-span-2 lg:col-span-1 flex items-center justify-center bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 p-6 rounded-lg border border-brand-gold/30 backdrop-blur-sm hover:border-brand-gold/60 transition-all duration-300 group">
+          <div className="sm:col-span-2 lg:col-span-1 flex items-center justify-center bg-linear-to-br from-brand-gold/20 to-brand-gold/5 p-6 rounded-lg border border-brand-gold/30 backdrop-blur-xs hover:border-brand-gold/60 transition-all duration-300 group">
             <a href="#final-cta-title" className="text-brand-gold text-lg text-center hover:text-brand-gold-light transition-colors flex flex-col items-center gap-2 group">
               <span className="group-hover:underline">Reçois ton e-book gratuitement en laissant ton e-mail.</span>
               <svg className="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">

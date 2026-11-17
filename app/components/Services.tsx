@@ -18,7 +18,7 @@ const services: Service[] = [
 
 const Services: React.FC = () => {
   return (
-    <section id="services" className="py-20 bg-gradient-to-b from-brand-blue to-brand-blue-light relative overflow-hidden">
+    <section id="services" className="py-20 bg-linear-to-b from-brand-blue to-brand-blue-light relative overflow-hidden">
       {/* Decorative gradient */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-gold/5 rounded-full blur-3xl"></div>
@@ -36,7 +36,7 @@ const Services: React.FC = () => {
           {services.map((service, index) => (
             <div 
               key={service.title} 
-              className="bg-gradient-to-br from-white/10 to-white/5 p-8 rounded-lg border border-transparent hover:border-brand-gold/50 hover:shadow-xl hover:shadow-brand-gold/10 transition-all duration-300 backdrop-blur-sm group animate-slide-up"
+              className="bg-linear-to-br from-white/10 to-white/5 p-8 rounded-lg border border-transparent hover:border-brand-gold/50 hover:shadow-xl hover:shadow-brand-gold/10 transition-all duration-300 backdrop-blur-xs group animate-slide-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <h3 className="text-2xl font-serif text-brand-beige mb-4 group-hover:text-brand-gold transition-colors">{service.title}</h3>

@@ -28,7 +28,7 @@ const Header: React.FC = () => {
       className={`sticky top-0 z-50 transition-all duration-300 ${
         isScrolled 
           ? 'bg-brand-blue/95 backdrop-blur-md shadow-2xl' 
-          : 'bg-brand-blue/80 backdrop-blur-sm'
+          : 'bg-brand-blue/80 backdrop-blur-xs'
       }`}
     >
       <div className="container mx-auto px-6 py-3 md:py-5 flex justify-between items-center max-w-7xl">
@@ -75,7 +75,7 @@ const Header: React.FC = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMobileMenu}
-          className="md:hidden text-brand-gold focus:outline-none p-2"
+          className="md:hidden text-brand-gold focus:outline-hidden p-2"
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? (

@@ -18,9 +18,9 @@ const pillars: Pillar[] = [
 
 const Reassurance: React.FC = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-[#14232e] to-brand-blue relative overflow-hidden">
+    <section className="py-20 bg-linear-to-b from-[#14232e] to-brand-blue relative overflow-hidden">
       {/* Decorative line */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-gold to-transparent"></div>
+      <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-brand-gold to-transparent"></div>
       
       <div className="container mx-auto px-6">
         <div className="text-center mb-12 animate-fade-in">
@@ -32,7 +32,7 @@ const Reassurance: React.FC = () => {
           {pillars.map((pillar, index) => (
             <div 
               key={pillar.title} 
-              className="text-center p-6 bg-white/5 rounded-lg border border-transparent hover:border-brand-gold/30 backdrop-blur-sm transition-all duration-300 group animate-slide-up"
+              className="text-center p-6 bg-white/5 rounded-lg border border-transparent hover:border-brand-gold/30 backdrop-blur-xs transition-all duration-300 group animate-slide-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="w-16 h-16 mx-auto text-brand-gold mb-4 group-hover:scale-110 transition-transform">{pillar.icon}</div>

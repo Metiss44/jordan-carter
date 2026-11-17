@@ -8,7 +8,7 @@ const Hero: React.FC = () => {
   return (
     <section id="hero" className="relative overflow-hidden">
       {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-brand-blue via-brand-blue-light to-brand-blue opacity-90"></div>
+      <div className="absolute inset-0 bg-linear-to-br from-brand-blue via-brand-blue-light to-brand-blue opacity-90"></div>
       
       {/* Animated background elements */}
       <div className="absolute top-20 right-10 w-72 h-72 bg-brand-gold/5 rounded-full blur-3xl animate-float"></div>
@@ -18,14 +18,14 @@ const Hero: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center w-full">
           {/* Text and Form Column */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-4">
-            <span className="inline-block px-4 py-2 bg-brand-gold/10 border border-brand-gold/30 rounded-full text-xs md:text-sm font-light tracking-widest text-brand-gold uppercase backdrop-blur-sm">
+            <span className="inline-block px-4 py-2 bg-brand-gold/10 border border-brand-gold/30 rounded-full text-xs md:text-sm font-light tracking-widest text-brand-gold uppercase backdrop-blur-xs">
               THE BODY HEALER — JORDAN CARTER
             </span>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-white leading-tight">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-white leading-tight md:leading-none">
               Reconnecte-toi à <span className="md:inline block">ton corps,</span> 
               <span className="block mt-2 text-brand-gold">Apaise ton esprit.</span>
             </h1>
-            <p className="text-sm md:text-lg text-brand-green-gray leading-relaxed">
+            <p className="text-sm md:text-lg text-brand-green-gray leading-relaxed md:leading-7">
               Je t&apos;aide à écouter les messages de ton corps pour libérer les tensions, retrouver un ancrage profond et intégrer des rituels simples à ton quotidien grâce aux soins énergétiques et à la respiration consciente.
             </p>
             <div id="ebook-form" className="w-full max-w-lg pt-2">

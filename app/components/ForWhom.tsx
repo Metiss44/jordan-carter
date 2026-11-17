@@ -5,9 +5,9 @@ import { CheckCircleIcon } from './Icons';
 
 const ForWhom: React.FC = () => {
   return (
-    <section id="for-whom" className="py-20 bg-gradient-to-b from-[#14232e] to-brand-blue relative overflow-hidden">
+    <section id="for-whom" className="py-20 bg-linear-to-b from-[#14232e] to-brand-blue relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-gold to-transparent"></div>
+      <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-brand-gold to-transparent"></div>
       
       <div className="container mx-auto px-6">
         <div className="text-center animate-fade-in">
@@ -19,7 +19,7 @@ const ForWhom: React.FC = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
-          <div className="bg-white/5 p-8 rounded-lg border border-brand-gold/20 backdrop-blur-sm hover:border-brand-gold/40 transition-all duration-300 animate-slide-up">
+          <div className="bg-white/5 p-8 rounded-lg border border-brand-gold/20 backdrop-blur-xs hover:border-brand-gold/40 transition-all duration-300 animate-slide-up">
             <h3 className="text-2xl md:text-3xl font-serif text-brand-gold mb-6">Tu te reconnais peut-être si…</h3>
             <ul className="space-y-4">
               <ListItem text="tu te sens souvent épuisé(e), tendu(e) ou à fleur de peau," />
@@ -28,7 +28,7 @@ const ForWhom: React.FC = () => {
               <ListItem text="tu sens que quelque chose doit changer, mais tu ne sais pas par où commencer." />
             </ul>
           </div>
-          <div className="bg-white/5 p-8 rounded-lg border border-brand-gold/20 backdrop-blur-sm hover:border-brand-gold/40 transition-all duration-300 animate-slide-up" style={{ animationDelay: '0.1s' }}>
+          <div className="bg-white/5 p-8 rounded-lg border border-brand-gold/20 backdrop-blur-xs hover:border-brand-gold/40 transition-all duration-300 animate-slide-up" style={{ animationDelay: '0.1s' }}>
             <h3 className="text-2xl md:text-3xl font-serif text-brand-gold mb-6">Tu aimerais…</h3>
             <ul className="space-y-4">
               <ListItem text="retrouver plus de calme intérieur," />
@@ -38,8 +38,8 @@ const ForWhom: React.FC = () => {
             </ul>
           </div>
         </div>
-        <div className="max-w-3xl mx-auto mt-12 bg-gradient-to-r from-brand-gold/10 to-transparent p-6 rounded-lg border-l-4 border-brand-gold">
-          <p className="text-center text-md md:text-lg text-brand-beige italic leading-relaxed">
+        <div className="max-w-3xl mx-auto mt-12 bg-linear-to-r from-brand-gold/10 to-transparent p-6 rounded-lg border-l-4 border-brand-gold">
+          <p className="text-center text-md md:text-lg text-brand-beige italic leading-relaxed md:leading-7">
             Tu n&apos;as pas besoin d&apos;avoir déjà pratiqué la méditation, le yoga ou les soins énergétiques : je t&apos;accompagne étape par étape.
           </p>
         </div>
@@ -50,7 +50,7 @@ const ForWhom: React.FC = () => {
 
 const ListItem: React.FC<{ text: string }> = ({ text }) => (
   <li className="flex items-start group">
-    <CheckCircleIcon className="h-5 w-5 text-brand-gold mr-3 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
+    <CheckCircleIcon className="h-5 w-5 text-brand-gold mr-3 mt-1 shrink-0 group-hover:scale-110 transition-transform" />
     <span className="text-brand-green-gray group-hover:text-white transition-colors">{text}</span>
   </li>
 );

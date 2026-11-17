@@ -47,7 +47,7 @@ const OptInForm: React.FC = () => {
           onChange={(e) => setFirstName(e.target.value)}
           placeholder="Prénom"
           required
-          className="w-full px-4 py-3 bg-white/10 border-2 border-white/20 rounded-lg text-white placeholder-brand-beige focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-transparent transition-all backdrop-blur-sm group-hover:border-white/30"
+          className="w-full px-4 py-3 bg-white/10 border-2 border-white/20 rounded-lg text-white placeholder-brand-beige focus:outline-hidden focus:ring-2 focus:ring-brand-gold focus:border-transparent transition-all backdrop-blur-xs group-hover:border-white/30"
         />
       </div>
       <div className="relative group">
@@ -59,13 +59,13 @@ const OptInForm: React.FC = () => {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Adresse e-mail"
           required
-          className="w-full px-4 py-3 bg-white/10 border-2 border-white/20 rounded-lg text-white placeholder-brand-beige focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-transparent transition-all backdrop-blur-sm group-hover:border-white/30"
+          className="w-full px-4 py-3 bg-white/10 border-2 border-white/20 rounded-lg text-white placeholder-brand-beige focus:outline-hidden focus:ring-2 focus:ring-brand-gold focus:border-transparent transition-all backdrop-blur-xs group-hover:border-white/30"
         />
       </div>
       <button 
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-gradient-to-r from-brand-gold to-brand-gold-light text-brand-blue font-bold py-3 px-6 rounded-full transform hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-brand-gold/50 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group"
+        className="w-full bg-linear-to-r from-brand-gold to-brand-gold-light text-brand-blue font-bold py-3 px-6 rounded-full transform hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-brand-gold/50 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group"
       >
         <span className="relative z-10">
           {isSubmitting ? 'Envoi en cours...' : 'Je veux recevoir l\'e-book'}

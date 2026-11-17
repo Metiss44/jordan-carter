@@ -16,14 +16,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, error: 'Missing email' }, { status: 400 });
     }
 
-    // Determine e-book URL:
-    // Priority: EBOOK_URL env var (allows CDN link), then NEXT_PUBLIC_BASE_URL + /ebook.pdf, then request origin
     const ebookUrl = process.env.EBOOK_URL
       || `${(process.env.NEXT_PUBLIC_BASE_URL || 'https://the-body-healer.com').replace(/\/$/, '')}/ebook.pdf`;
-
     const apiKey = process.env.RESEND_API_KEY;
-    if (!apiKey) {
-      return NextResponse.json({ ok: false, error: 'Server misconfiguration: RESEND_API_KEY not set' }, { status: 500 });
+    const makeWebhook = process.env.MAKE_WEBHOOK_URL;
+    if (!apiKey || !makeWebhook) {
+      return NextResponse.json({ ok: false, error: 'Service temporairement indisponible.' }, { status: 503 });
     }
 
     const payload = {
@@ -37,9 +35,8 @@ export async function POST(request: Request) {
              <p>Avec bienveillance,<br/>Jordan</p>`
     };
 
-    // First: Notify Make/Webhook so subscribers are captured even if Resend fails.
+    // Preserve the existing order: capture the subscriber before sending the email.
     try {
-      const makeWebhook = process.env.MAKE_WEBHOOK_URL || 'https://hook.eu2.make.com/1ooouqzlc2g92iv9ta0nv9d5g361cby8';
       const makeResp = await fetch(makeWebhook, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -51,21 +48,13 @@ export async function POST(request: Request) {
           source: 'website'
         }),
       });
-
       if (!makeResp.ok) {
-        const makeText = await makeResp.text().catch(() => '[unreadable body]');
-        // eslint-disable-next-line no-console
-        console.error('Make webhook returned non-OK status', makeResp.status, makeText);
-      } else {
-        // eslint-disable-next-line no-console
-        console.log('Make webhook delivered, status', makeResp.status);
+        console.error('Make webhook returned non-OK status', makeResp.status);
       }
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error('Make webhook failed:', err);
+    } catch {
+      console.error('Make webhook failed');
     }
 
-    // Then: send email via Resend
     const resp = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -74,16 +63,12 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify(payload),
     });
-
     if (!resp.ok) {
-      const text = await resp.text();
-      // eslint-disable-next-line no-console
-      console.error('Resend error:', resp.status, text);
-      return NextResponse.json({ ok: false, error: 'Resend error', detail: text }, { status: 502 });
+      console.error('Resend error status:', resp.status);
+      return NextResponse.json({ ok: false, error: 'Resend error' }, { status: 502 });
     }
-
     return NextResponse.json({ ok: true });
-  } catch (err: any) {
-    return NextResponse.json({ ok: false, error: err?.message || 'Unknown error' }, { status: 500 });
+  } catch {
+    return NextResponse.json({ ok: false, error: 'Erreur interne du serveur' }, { status: 500 });
   }
 }

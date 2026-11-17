@@ -44,3 +44,6 @@ next-env.d.ts
 *.njsproj
 *.sln
 *.sw?
+.open-next/
+.wrangler/
+.dev.vars*
