@@ -24,7 +24,7 @@ function setup(t) {
 test('capture avant envoi, validation, échappement et double clic', async t => {
   const {call,db} = setup(t); let n=0;
   const send=async (url,req) => {
-    n++; assert.equal(url,'https://api.resend.com/emails');
+    n++; assert.equal(url,'https://api.resend.com/emails'); assert.equal(req.redirect,'manual');
     assert.equal(db.prepare('SELECT count(*) n FROM ebook_requests').get().n,1);
     assert.equal(JSON.parse(req.body).to,'example@example.invalid'); assert.match(JSON.parse(req.body).html,/&lt;Test&gt;/);
     return new Response('{}',{status:200});

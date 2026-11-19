@@ -41,7 +41,9 @@ async function deliver(env: EbookEnv, id: string, now: number, send: typeof fetc
   let status = 0;
   try {
     const result = await send('https://api.resend.com/emails', {
-      method: 'POST', redirect: 'error', signal: AbortSignal.timeout(12000),
+      // workerd accepts "manual" or "follow", not "error". Never forward the
+      // authorization header to a redirect target; only a 2xx is acceptance.
+      method: 'POST', redirect: 'manual', signal: AbortSignal.timeout(12000),
       headers: { 'Content-Type':'application/json', Authorization:`Bearer ${env.RESEND_API_KEY}`, 'Idempotency-Key':`ebook/${row.request_id}` },
       body: JSON.stringify(payload),
     });

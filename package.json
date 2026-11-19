@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test:ebook": "node --test tests/ebook.test.mjs",
+    "test:ebook-worker": "pnpm cf:build && wrangler deploy --dry-run --outdir .wrangler/ebook-test && node --test tests/ebook-worker.test.mjs",
     "verifier": "tsc --noEmit && next build",
     "dev": "next dev",
     "build": "next build",
@@ -27,6 +28,7 @@
     "@types/node": "^22.14.0",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
+    "miniflare": "5.20261113.0-beta",
     "postcss": "^8.4.0",
     "tailwindcss": "4.3.5",
     "typescript": "6.0.3",

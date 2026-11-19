@@ -24,7 +24,10 @@ SELECT count(*) AS demandes, count(sent_at) AS acceptees,
 FROM ebook_requests;
 ```
 
-`pnpm test:ebook` utilise SQLite en mémoire et un transport simulé. Appliquer
+`pnpm test:ebook` utilise SQLite en mémoire et un transport simulé.
+`pnpm test:ebook-worker` construit le Worker, puis teste sa route et sa tâche
+planifiée dans le moteur Cloudflare local, avec D1 éphémère et toutes les
+sorties réseau interceptées. Aucun mail ne part. Appliquer
 `pnpm exec wrangler d1 migrations apply EBOOK_DB --remote` avant la première
 publication GitHub. Le déploiement du site et de sa tâche planifiée passe par
 la branche `main`. L’ancien hébergement Vercel est suspendu et ne dispose pas
