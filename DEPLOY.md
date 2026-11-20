@@ -1,5 +1,9 @@
 # 🚀 Guide de Déploiement Vercel - The Body Healer
 
+> **Archive de l’ancien hébergement.** Vercel est suspendu. Pour la production
+> actuelle, les contrôles sans faux prospect et la publication par GitHub,
+> voir [Demandes d’e-book — production](EBOOK.md).
+
 ## 📋 Prérequis
 
 - ✅ Code pushé sur GitHub : https://github.com/Metiss44/jordan-carter

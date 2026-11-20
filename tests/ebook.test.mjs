@@ -16,8 +16,8 @@ function setup(t) {
     }) }) },
     EBOOK_URL: 'https://cdn.the-body-healer.com/fixture.pdf', RESEND_API_KEY: 'fixture',
   };
-  const call = (send, now, data={ firstName:'<Test>', email:'Example@example.invalid' }) =>
-    handleEbook(new Request('https://example.invalid/',{method:'POST',body:JSON.stringify(data)}), env, send, now);
+  const call = (send, now, data={ firstName:'<Test>', email:'Example@example.invalid' }, onCapture) =>
+    handleEbook(new Request('https://example.invalid/',{method:'POST',body:JSON.stringify(data)}), env, send, now, onCapture);
   return { env, call, db };
 }
 
@@ -53,4 +53,18 @@ test('stockage indisponible ou refus définitif : aucun faux succès et aucune b
   assert.equal(calls,1);
   env.EBOOK_DB.prepare=()=>{throw Error('stockage non disponible');};
   assert.equal((await call(refuse,6000)).status,503); assert.equal(calls,1);
+});
+
+test('migration du tableur : reprise de l’existant, pas de doublon, seconde demande après 24 h',async t=>{
+  const {call,db}=setup(t); let messages=0;
+  const accept=async()=>{ messages++;return new Response('{}'); };
+  await call(accept,1000);
+  db.exec(readFileSync(new URL('../migrations/0002_ebook_sheet_outbox.sql',import.meta.url),'utf8'));
+  const entries=()=>db.prepare('SELECT request_id,first_name FROM ebook_sheet_outbox ORDER BY requested_at').all();
+  const [first]=entries(); assert.ok(first.request_id);
+  await call(accept,1100,{firstName:'Double',email:'example@example.invalid'});
+  assert.deepEqual(entries(),[first]);
+  assert.equal((await call(accept,1000+86400,{firstName:'Retour',email:'example@example.invalid'},()=>{throw Error('contexte fermé');})).status,200);
+  const both=entries(); assert.equal(both.length,2); assert.deepEqual(both[0],first);
+  assert.notEqual(both[1].request_id,first.request_id); assert.equal(both[1].first_name,'Retour'); assert.equal(messages,2);
 });

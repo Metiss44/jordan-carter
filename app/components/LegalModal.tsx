@@ -43,7 +43,7 @@ const LegalModal: React.FC<LegalModalProps> = ({ isOpen, onClose }) => {
           </div>
           <h3 className="text-2xl md:text-3xl font-serif pt-4 text-brand-blue border-t-2 border-brand-gold/30 mt-6">Politique de Confidentialité</h3>
           <div className="bg-white/50 p-4 rounded-lg">
-             <p className="mb-3">Jordan Carter utilise le prénom et l&apos;adresse e-mail saisis pour envoyer l&apos;e-book demandé. La demande est enregistrée dans un espace privé hébergé dans l&apos;Union européenne. Resend assure l&apos;envoi du mail.</p>
+             <p className="mb-3">Jordan Carter utilise le prénom et l&apos;adresse e-mail saisis pour envoyer l&apos;e-book demandé. Le site enregistre la demande dans une base privée hébergée dans l&apos;Union européenne. Le prénom, l&apos;adresse e-mail et la date sont également transmis au tableau de suivi de Jordan hébergé par Google, lisible par les personnes qui disposent de son lien. Resend assure l&apos;envoi du mail.</p>
              <p>Les demandes d&apos;e-book sont conservées pendant 90 jours. Pour accéder à vos données, les faire rectifier ou les faire effacer, écrivez à thebodyhealer81@gmail.com.</p>
           </div>
         </div>

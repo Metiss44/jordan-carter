@@ -10,6 +10,7 @@ export type EbookEnv = {
   EBOOK_DB: { prepare(sql: string): Statement };
   EBOOK_URL: string;
   RESEND_API_KEY: string;
+  EBOOK_SHEETS_CONFIG?: string;
 };
 type Delivery = { email: string; first_name: string; ebook_url: string; request_id: string; attempts: number };
 const day = 86400;
@@ -61,7 +62,7 @@ async function deliver(env: EbookEnv, id: string, now: number, send: typeof fetc
   return false;
 }
 
-export async function handleEbook(request: Request, env: EbookEnv, send: typeof fetch = fetch, now = Math.floor(Date.now()/1000)) {
+export async function handleEbook(request: Request, env: EbookEnv, send: typeof fetch = fetch, now = Math.floor(Date.now()/1000), onCapture?: (id: string) => void) {
   const body = await request.json().catch(() => null);
   if (!body || typeof body !== 'object' || Array.isArray(body) || typeof body.email !== 'string'
     || body.email.length > 254 || !/^[^\s@<>,;"'\x00-\x1f]+@[^\s@<>,;"'\x00-\x1f]+\.[^\s@<>,;"'\x00-\x1f]+$/.test(body.email)
@@ -81,6 +82,9 @@ export async function handleEbook(request: Request, env: EbookEnv, send: typeof 
     const entry = await env.EBOOK_DB.prepare('SELECT request_id, sent_at FROM ebook_requests WHERE email=?').bind(email)
       .first<{request_id:string;sent_at:number|null}>();
     if (!entry) return reply(503);
+    // The database trigger already queued the row. Scheduling its fast path
+    // is optional, including if the execution context has already closed.
+    try { onCapture?.(entry.request_id); } catch { console.warn('Ebook Sheet queued for retry'); }
     return reply(entry.sent_at != null || await deliver(env, entry.request_id, now, send) ? 200 : 503);
   } catch {
     console.error('Ebook capture or delivery unavailable');

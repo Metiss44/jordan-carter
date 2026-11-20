@@ -7,6 +7,7 @@
   "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
   "workers_dev": false,
   "preview_urls": false,
+  "secrets": { "required": ["RESEND_API_KEY", "EBOOK_URL", "EBOOK_SHEETS_CONFIG"] },
   "d1_databases": [
     { "binding": "EBOOK_DB", "database_name": "jordan-ebook", "database_id": "ef21603b-3c15-4fc2-aa70-b519aea59298", "jurisdiction": "eu" }
   ],
